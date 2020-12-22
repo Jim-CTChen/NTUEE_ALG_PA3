@@ -102,13 +102,14 @@ void Graph::link(int x, int y) {
  */
 void Graph::MST_Kruskal() {
   sort(edges.begin(), edges.end(), my_compare);
+  vector<Edge> new_edges;
   for (size_t i = 0; i < edges.size(); ++i) {
     if (find_set(edges[i].s) != find_set(edges[i].t)) {
       link(find_set(edges[i].s), find_set(edges[i].t));
-      edges.erase(edges.begin()+i);
-      i--;
     }
+    else  new_edges.push_back(edges[i]);
   }
+  edges = new_edges;
 }
 
 // directed graph
